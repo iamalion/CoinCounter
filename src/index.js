@@ -98,11 +98,11 @@
 function calculateChange(amountInCents, coins = [25, 10, 5, 1], index = 0) {
   // Base case: If amount becomes zero, return empty array;
   if (amountInCents === 0) {
-      return [];
+    return [];
   }
   // Base case: If we've gone through all coin types, return null
   if (index >= coins.length) {
-      return null;
+    return null;
   }
 
   // Get the value of the current coin
@@ -115,23 +115,23 @@ function calculateChange(amountInCents, coins = [25, 10, 5, 1], index = 0) {
 
   // Loop through all possible counts of current coin
   for (let count = maxCount; count >= 0; count--) {
-      // Calculate the remaining amount after using current coin count
-      const remainingAmount = amountInCents - count * currentCoin;
+    // Calculate the remaining amount after using current coin count
+    const remainingAmount = amountInCents - count * currentCoin;
 
-      // Recursively find the next valid change using remaining amount
-      const nextChange = calculateChange(remainingAmount, coins, index + 1);
+    // Recursively find the next valid change using remaining amount
+    const nextChange = calculateChange(remainingAmount, coins, index + 1);
 
-      // If a valid change is found for the remaining amount  
-      if (nextChange !== null) {
+    // If a valid change is found for the remaining amount  
+    if (nextChange !== null) {
           
-          // Add the current count to the beginning of the change array
-          nextChange.unshift(count);
+      // Add the current count to the beginning of the change array
+      nextChange.unshift(count);
 
-          // Update the bestChange if it's null or better than the previous best
-          if (bestChange === null || nextChange.length < bestChange.length) {
-              bestChange = nextChange;
-          }
+      // Update the bestChange if it's null or better than the previous best
+      if (bestChange === null || nextChange.length < bestChange.length) {
+        bestChange = nextChange;
       }
+    }
   }
 
   return bestChange;
@@ -140,9 +140,9 @@ function calculateChange(amountInCents, coins = [25, 10, 5, 1], index = 0) {
 function printChange(change) {
   const coins = ["quarters", "dimes", "nickels", "pennies"];
   change.forEach((count, i) => {
-      if (count > 0) {
-          console.log(`${count} ${coins[i]}`);
-      }
+    if (count > 0) {
+      console.log(`${count} ${coins[i]}`);
+    }
   });
 }
 
