@@ -96,25 +96,38 @@
 
 // Updated code: This works as expected now.
 function calculateChange(amountInCents, coins = [25, 10, 5, 1], index = 0) {
+  // Base case: If amount becomes zero, return empty array;
   if (amountInCents === 0) {
       return [];
   }
-
+  // Base case: If we've gone through all coin types, return null
   if (index >= coins.length) {
       return null;
   }
 
+  // Get the value of the current coin
   const currentCoin = coins[index];
+
+  // Calculate the maximum count of current coin that can be used
   const maxCount = Math.floor(amountInCents / currentCoin);
 
   let bestChange = null;
 
+  // Loop through all possible counts of current coin
   for (let count = maxCount; count >= 0; count--) {
+      // Calculate the remaining amount after using current coin count
       const remainingAmount = amountInCents - count * currentCoin;
+
+      // Recursively find the next valid change using remaining amount
       const nextChange = calculateChange(remainingAmount, coins, index + 1);
 
+      // If a valid change is found for the remaining amount  
       if (nextChange !== null) {
+          
+          // Add the current count to the beginning of the change array
           nextChange.unshift(count);
+
+          // Update the bestChange if it's null or better than the previous best
           if (bestChange === null || nextChange.length < bestChange.length) {
               bestChange = nextChange;
           }
@@ -141,3 +154,29 @@ if (change === null) {
 } else {
   printChange(change);
 }
+
+
+// // example of closure
+// const getSecret = (secret) => {
+//   return {
+//     get: () => secret
+//   };
+// };
+
+// test('Closure for object privacy.', assert => {
+//   const msg = '.get() should have access to the closure.';
+//   const expected = 1;
+//   const obj = getSecret(1);
+
+//   const actual = obj.get();
+
+//   try {
+//     assert.ok(secret, 'This throws an error.');
+//   } catch (e) {
+//     assert.ok(true, `The secret var is only available
+//       to privileged methods.`);
+//   }
+
+//   assert.equal(actual, expected, msg);
+//   assert.end();
+// });
