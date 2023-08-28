@@ -1,7 +1,7 @@
 {
   "name": "shape-tracker",
   "version": "1.0.0",
-  "description": "",
+  "description": "**This was written for Node version 16, if you have a different version of Node, this will not work. See the bottom of this file for more information**",
   "main": "index.js",
   "scripts": {
     "build": "webpack --mode=development",
@@ -28,5 +28,13 @@
   },
   "dependencies": {
     "bootstrap": "^5.2.3"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iamalion/CoinCounter.git"
+  },
+  "bugs": {
+    "url": "https://github.com/iamalion/CoinCounter/issues"
+  },
+  "homepage": "https://github.com/iamalion/CoinCounter#readme"
 }
